@@ -17,15 +17,15 @@ variables:
   PackageVersion: '0.0.9-alpha'
 
 steps:
-- script: dotnet build -c $(buildConfiguration) "src\Alphirk.sln"
-  displayName: 'Build solution'
-- script: dotnet test "src\Alphirk.Tests\Alphirk.Tests.csproj"
-  displayName: 'Test solution'
+#- script: dotnet build -c $(buildConfiguration) "src\Alphirk.sln"
+#  displayName: 'Build solution'
+#- script: dotnet test "src\Alphirk.Tests\Alphirk.Tests.csproj"
+#  displayName: 'Test solution'
 - task: DotNetCoreCLI@2
   displayName: 'Package project'
   inputs:
     command: pack
-    packagesToPack: "src\\Alphirk.Simulation\\AlphirkSimulation.csproj"
+    packagesToPack: "src\\Alphirk.Simulation\\Alphirk.Simulation.csproj"
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
