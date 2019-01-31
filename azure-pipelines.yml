@@ -21,3 +21,9 @@ steps:
   displayName: 'Build solution'
 - script: dotnet test "src\Alphirk.Tests\Alphirk.Tests.csproj"
   displayName: 'Test solution'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
+    publishLocation: 'filePath'
+    targetPath: 'artifacts'
