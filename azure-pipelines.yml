@@ -26,7 +26,8 @@ steps:
   inputs:
     command: pack
     packagesToPack: 'src/Alphirk.Simulation/Alphirk.Simulation.csproj'
-    versioningScheme: byPrereleaseNumber
+    versioningScheme: byEnvVar
+    versionEnvVar: 'PackageVersion'
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'
