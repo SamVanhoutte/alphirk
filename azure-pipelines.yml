@@ -21,10 +21,11 @@ steps:
   displayName: 'Build solution'
 - script: dotnet test "src\Alphirk.Tests\Alphirk.Tests.csproj"
   displayName: 'Test solution'
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: 'Package project'
   inputs:
     command: pack
+    packagesToPack: "src\\Alphirk.Simulation\\AlphirkSimulation.csproj"
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
