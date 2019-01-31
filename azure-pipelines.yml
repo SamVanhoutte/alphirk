@@ -11,9 +11,28 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  Major: '1'
+  Minor: '0'
+  Patch: '0'
 
 steps:
 - script: dotnet build -c $(buildConfiguration) "src\Alphirk.sln"
   displayName: 'Build solution'
 - script: dotnet test "src\Alphirk.Tests\Alphirk.Tests.csproj"
-  displayName: 'Build solution'
+  displayName: 'Test solution'
+- task: NuGetCommand@2
+  displayName: 'Package project'
+  inputs:
+    command: pack
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)'
+- task: NuGetCommand@2
+  displayName: 'Push package'
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: '<Name of the NuGet service connection>'
+    versioningScheme: byEnvVar
+    versionEnvVar: <VersionVariableName>
