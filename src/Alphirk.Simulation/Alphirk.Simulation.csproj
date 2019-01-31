@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Sam Vanhoutte</Authors>
+    <Company>Codit</Company>
+    <Description>Simulation library for .NET</Description>
+    <Copyright>Sam Vanhoutte</Copyright>
+    <PackageProjectUrl>https://github.com/SamVanhoutte/alphirk</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/SamVanhoutte/alphirk</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>random simulation</PackageTags>
+  </PropertyGroup>
+
+</Project>
