@@ -25,7 +25,7 @@ steps:
   displayName: 'Package project'
   inputs:
     command: pack
-    packagesToPack: "src\\Alphirk.Simulation\\Alphirk.Simulation.csproj"
+    packagesToPack: 'src/Alphirk.Simulation/Alphirk.Simulation.csproj'
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
