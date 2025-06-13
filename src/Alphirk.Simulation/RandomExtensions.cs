@@ -66,7 +66,7 @@ namespace Alphirk.Simulation
 
             return randNormal;
         }
-
+        
         /// <summary>
         /// Generates normally distributed numbers, spread between the minimum and maximum value, using Gaussian distribution
         /// </summary>
@@ -78,13 +78,7 @@ namespace Alphirk.Simulation
         /// <returns>Generated value</returns>
         public static int NextGaussianValue(this Random random, int minimum, int maximum, double mean = 0, double stddev = 1)
         {
-            var u1 = random.NextDouble();
-            var u2 = random.NextDouble();
-
-            var randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) *
-                                Math.Sin(2.0 * Math.PI * u2);
-            var randNormal = mean + stddev * randStdNormal;
-
+            var randNormal = random.NextGaussian(mean, stddev);
             return Math.Abs(Convert.ToInt32(minimum + randNormal * (maximum - minimum)));
         }
 
@@ -109,6 +103,30 @@ namespace Alphirk.Simulation
 
             return Convert.ToInt32(resultingDouble);
         }
+        
+        /// <summary>
+        /// Generates values from minimum triangular distribution, with the most common/central value specified
+        /// </summary>
+        /// <remarks>
+        /// See http://en.wikipedia.org/wiki/Triangular_distribution for minimum description of the triangular probability distribution and the algorithm for generating one.
+        /// </remarks>
+        /// <param name="random">given random</param>
+        /// <param name="minimum">Minimum value</param>
+        /// <param name="maximum">Maximum maximum value</param>
+        /// <param name="centerValue">Mode (most frequent value)</param>
+        /// <returns>Generated random value</returns>
+        public static double NextTriangularValue(this Random random, double minimum, double maximum, double centerValue)
+        {
+            var rndValue = random.NextDouble();
+
+            var resultingDouble = rndValue < (centerValue - minimum) / (maximum - minimum)
+                ? minimum + Math.Sqrt(rndValue * (maximum - minimum) * (centerValue - minimum))
+                : maximum - Math.Sqrt((1 - rndValue) * (maximum - minimum) * (maximum - centerValue));
+
+            return resultingDouble;
+        }
+        
+        
 
         /// <summary>
         /// Equally likely to return true or false. Uses <see cref="Random.Next()"/>.

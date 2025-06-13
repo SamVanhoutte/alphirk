@@ -10,6 +10,7 @@
     <RepositoryUrl>https://github.com/SamVanhoutte/alphirk</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageTags>random simulation</PackageTags>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 </Project>
